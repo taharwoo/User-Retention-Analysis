@@ -19,3 +19,4 @@ partcols <- ncol(df)
 if (partcols < totcols) df[, c((partcols+1):totcols)] <- 0
 #Replicate Initial Row With New One
 cohort.clients.r[i,] <- df
+}

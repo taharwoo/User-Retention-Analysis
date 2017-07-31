@@ -1,0 +1,5 @@
+#Retention Ratio
+x <- cohort.clients.r[,c(2:13)]
+y <- cohort.clients.r[,2]
+reten.r <- apply(x, 2, function(x) x/y )
+reten.r <- data.frame(cohort=(cohort.clients.r$cohort), reten.r)

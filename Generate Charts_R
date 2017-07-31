@@ -1,0 +1,11 @@
+#Generate Charts
+reten.r <- reten.r[,-2]
+
+cohort.chart1 <- melt(reten.r, id.vars = 'cohort')
+colnames(cohort.chart1) <- c('cohort', 'month', 'retention')
+cohort.chart1 <- filter(cohort.chart1, retention != 0)
+p <- ggplot(cohort.chart1, aes(x=month, y=retention, group=cohort, colour=cohort))
+p + geom_line(size=2, alpha=1/2) +
+  geom_point(size=3, alpha=1) +
+  geom_smooth(aes(group=1), method = 'loess', size=2, colour='red', se=FALSE) +
+  labs(title="Cohorts Retention ratio dynamics")

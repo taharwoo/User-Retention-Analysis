@@ -1,0 +1,21 @@
+#Load Packages
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+
+#Create New Data Frame
+cohort.clients.r <- cohort.clients
+#Count Number Of Columns
+totcols <- ncol(cohort.clients.r)
+#For Loop For Shifting Each Row
+for (i in 1:nrow(cohort.clients.r)) {
+#Select Row From Data Frame
+df <- cohort.clients.r[i,]
+#Remove Null Columns
+df <- df[ , !df[]==0]
+#Count Number Of Columns In Row
+partcols <- ncol(df)
+#Fill Columns After Null Values
+if (partcols < totcols) df[, c((partcols+1):totcols)] <- 0
+#Replicate Initial Row With New One
+cohort.clients.r[i,] <- df
